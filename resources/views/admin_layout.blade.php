@@ -12,9 +12,9 @@
     <meta name="robots" content="noindex,nofollow">
     <title>Trang quản lý</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/monster-admin-lite/" />
-    <link rel="icon" type="image/png" sizes="16x16" href="public/backend/assets/images/favicon.png">
-    <link href="public/backend/plugins/chartist/dist/chartist.min.css" rel="stylesheet">
-    <link href="public/backend/css/style.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('public/backend/assets/images/favicon.png')}}">
+    <link href="{{asset('public/backend/plugins/chartist/dist/chartist.min.css')}}" rel="stylesheet">
+    <link href="{{asset('public/backend/css/style.min.css')}}" rel="stylesheet">
     <style>
         .sidebar-submenu {
             display: none;
@@ -30,11 +30,11 @@
                 <div class="navbar-header" data-logobg="skin6">
                     <a class="navbar-brand" href="index.html">
                         <b class="logo-icon">
-                            <img src="public/backend/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                            <img src="{{asset('public/backend/assets/images/logo-icon.png')}}" alt="homepage" class="dark-logo" />
 
                         </b>
                         <span class="logo-text">
-                            <img src="public/backend/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+                            <img src="{{asset('public/backend/assets/images/logo-text.png')}}" alt="homepage" class="dark-logo" />
 
                         </span>
                     </a>
@@ -57,7 +57,7 @@
                             echo '<ul class="navbar-nav">
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="public/backend/assets/images/users/TK.jpg" alt="user" class="profile-pic me-2">
+                                            <img src="'.asset('public/backend/assets/images/users/TK.jpg').'" alt="user" class="profile-pic me-2">
                                             ' . $name . '
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -78,7 +78,7 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/dashboard')}}"
                                 aria-expanded="false">
                                 <i class="me-3 far fa-clock fa-fw" aria-hidden="true">
                                 </i>
@@ -91,7 +91,7 @@
                                 <span>Danh mục sản phẩm</span> 
                                 <i class="fa fa-caret-down" aria-hidden="false"></i>
                             </span>
-                            <ul class="sidebar-submenu" id="subMenu">
+                            <ul class="sidebar-submenu" id="subMenu1">
                                 <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/add-category-product')}}"
                                         aria-expanded="false">
@@ -104,6 +104,29 @@
                                         aria-expanded="false">
                                         <i class="me-3 fa fa-table" aria-hidden="false"></i>
                                         <span>Liệt kê danh mục</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item dropdown">
+                            <span class="sidebar-link waves-effect waves-dark toggleSubMenu">
+                                <i class="me-3 fas fa-utensils" aria-hidden="true"></i>
+                                <span>Sản phẩm</span> 
+                                <i class="fa fa-caret-down" aria-hidden="false"></i>
+                            </span>
+                            <ul class="sidebar-submenu" id="subMenu2">
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/add-product')}}"
+                                        aria-expanded="false">
+                                        <i class="me-3 fa fa-table" aria-hidden="false"></i>
+                                        <span>Thêm sản phẩm</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/all-product')}}"
+                                        aria-expanded="false">
+                                        <i class="me-3 fa fa-table" aria-hidden="false"></i>
+                                        <span>Liệt kê sản phẩm</span>
                                     </a>
                                 </li>
                             </ul>
@@ -125,15 +148,17 @@
     <script src="public/backend/js/pages/dashboards/dashboard1.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-        var toggleSubMenu = document.querySelector('.toggleSubMenu');
-        var subMenu = document.querySelector('.sidebar-submenu');
-
-        toggleSubMenu.addEventListener('click', function () {
-            if (subMenu.style.display === 'none') {
-                subMenu.style.display = 'block';
-            } else {
-                subMenu.style.display = 'none';
-            }
+            var toggleSubMenu = document.querySelectorAll('.toggleSubMenu');
+            
+            toggleSubMenu.forEach(function (toggle) {
+                toggle.addEventListener('click', function () {
+                    var subMenu = this.nextElementSibling;
+                    if (subMenu.style.display === 'none' || subMenu.style.display === '') {
+                        subMenu.style.display = 'block';
+                    } else {
+                        subMenu.style.display = 'none';
+                    }
+                });
             });
         });
     </script>

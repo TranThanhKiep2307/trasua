@@ -16,8 +16,9 @@ class CategoryProduct extends Controller
 
     }
     public function all_category_product(){
-        return view('admin.all_category_product');
-    }
+        $all_category_product = DB::table('category_product_table')->get();
+        return view('admin.all_category_product', ['all_category_product' => $all_category_product]);
+    }    
     public function save_category_product(Request $request){
         $data = array();
         $data['category_name'] = $request->category_name;
@@ -26,5 +27,23 @@ class CategoryProduct extends Controller
         DB::table('category_product_table')->insert($data);
         Session()->put('message','Thêm danh mục sản phẩm thành công');
         return redirect::to('add-category-product');
+    }
+    public function edit_category_product($category_id){
+        $edit_category_product = DB::table('category_product_table')->where('category_id', $category_id)->get();
+        return view('admin.edit_category_product', ['edit_category_product' => $edit_category_product]);
+    }
+    public function update_category_product(Request $request, $category_id){
+        $data = array();
+        $data['category_name'] = $request->category_name;
+        $data['category_decs'] = $request->category_decs;
+
+        DB::table('category_product_table')->where('category_id', $category_id)->update($data);
+        Session()->put('message','Cập nhật danh mục sản phẩm thành công');
+        return redirect::to('all-category-product');
+    }
+    public function delete_category_product($category_id){
+        DB::table('category_product_table')->where('category_id', $category_id)->delete();
+        Session()->put('message','Xóa danh mục sản phẩm thành công');
+        return redirect::to('all-category-product');
     }
 }

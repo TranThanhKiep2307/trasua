@@ -4,12 +4,12 @@
     <div class="page-breadcrumb">
         <div class="row align-items-center">
             <div class="col-md-6 col-8 align-self-center">
-                <h3 class="page-title mb-0 p-0">Liệt kê danh mục</h3>
+                <h3 class="page-title mb-0 p-0">Liệt kê sản phẩm</h3>
                 <div class="d-flex align-items-center">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{URL::to('/dashboard')}}">Trang chủ</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Liệt kê danh mục</li>
+                            <li class="breadcrumb-item active" aria-current="page">Liệt kê sản phẩm</li>
                         </ol>
                     </nav>
                 </div>
@@ -33,20 +33,24 @@
                                 <thead>
                                     <tr style="text-align: center;">
                                         <th class="border-top-0">STT</th>
-                                        <th class="border-top-0">Mã danh mục</th>
+                                        <th class="border-top-0">Mã sản phẩm</th>
+                                        <th class="border-top-0">Tên sản phẩm</th>
                                         <th class="border-top-0">Tên danh mục</th>
-                                        <th class="border-top-0">Mô tả</th>
+                                        <th class="border-top-0">Giá sản phẩm</th>
+                                        <th class="border-top-0">Hình ảnh sản phẩm</th>
+                                        <th class="border-top-0">Mô tả sản phẩm</th>
+                                        <th class="border-top-0">Trạng thái sản phẩm</th>
                                         <th class="border-top-0">Chỉnh sửa</th>
                                     </tr>
                                 </thead>
                                 <tbody style="text-align: center;">
                                     <style>
-                                        .me-3.fas.fa-pencil-alt  {
+                                        .me-3.fa.fa-toggle-on, .me-3.fas.fa-pencil-alt  {
                                             color: green; 
                                             font-size: 30px;
                                         }
                                     
-                                        .me-3.fas.fa-trash {
+                                        .me-3.fa.fa-toggle-off, .me-3.fas.fa-trash {
                                             color: red; 
                                             font-size: 30px;
                                         }
@@ -54,15 +58,31 @@
                                     @php
                                         $stt = 1;
                                     @endphp
-                                    @foreach($all_category_product as $key => $category_product)
+                                    @foreach($all_product as $key => $product)
                                         <tr>
                                             <td>{{$stt}}</td>
-                                            <td>{{$category_product->category_id}}</td>
-                                            <td>{{$category_product->category_name}}</td>
-                                            <td style="text-align: left;">{{$category_product->category_decs}}</td>
+                                            <td>{{$product->product_id}}</td>
+                                            <td>{{$product->product_name}}</td>
+                                            <td>{{$product->category_id}}</td>
+                                            <td>{{$product->product_price}}</td>
+                                            <td class="mt-4">
+                                                @if($product->product_image && file_exists(public_path('images/products/'.$product->product_image)))
+                                                    <img src="{{ URL::to('/public/images/products/'.$product->product_image) }}" class="rounded-circle" width="100px" />
+                                                @else
+                                                    NULL
+                                                @endif
+                                            </td>
+                                            <td style="text-align: left;">{{$product->product_decs}}</td>
                                             <td>
-                                                <a class="me-3 fas fa-pencil-alt" href="{{URL::to('/edit-category-product/'.$category_product->category_id)}}" aria-hidden="true"></a>
-                                                <a onclick="return confirm('Bạn chắc xóa danh mục này chứ?')" class="me-3 fas fa-trash" href="{{URL::to('/delete-category-product/'.$category_product->category_id)}}" aria-hidden="true"></a>
+                                                @if($product->product_status == 0)
+                                                    <a class="me-3 fa fa-toggle-on" href=""></a>
+                                                @elseif($product->product_status == 1)
+                                                    <a class="me-3 fa fa-toggle-off" href=""></a>
+                                                @endif
+                                            </td>
+                                            <td >
+                                                <a class="me-3 fas fa-pencil-alt" href="{{URL::to('/edit-product/'.$product->product_id)}}" aria-hidden="true"></a>
+                                                <a onclick="return confirm('Bạn chắc xóa danh mục này chứ?')" class="me-3 fas fa-trash" href="{{URL::to('/delete-product/'.$product->product_id)}}" aria-hidden="true"></a>
                                             </td>
                                         </tr>
                                         @php
