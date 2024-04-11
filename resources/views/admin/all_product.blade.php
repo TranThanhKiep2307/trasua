@@ -25,7 +25,7 @@
                             <?php
                             $message = Session::get('message');
                             if($message){
-                                echo '<span>'.$message.'</span>';
+                                echo '<h5>'.$message.'</h5>';
                                 Session::put('message',null);
                             }
                             ?>
@@ -63,7 +63,7 @@
                                             <td>{{$stt}}</td>
                                             <td>{{$product->product_id}}</td>
                                             <td>{{$product->product_name}}</td>
-                                            <td>{{$product->category_id}}</td>
+                                            <td>{{$product->category_name}}</td>
                                             <td>{{$product->product_price}}</td>
                                             <td class="mt-4">
                                                 @if($product->product_image && file_exists(public_path('images/products/'.$product->product_image)))
@@ -75,9 +75,9 @@
                                             <td style="text-align: left;">{{$product->product_decs}}</td>
                                             <td>
                                                 @if($product->product_status == 0)
-                                                    <a class="me-3 fa fa-toggle-on" href=""></a>
+                                                    <a class="me-3 fa fa-toggle-on" href="{{URL::to('/off-product/'.$product->product_id)}}"></a>
                                                 @elseif($product->product_status == 1)
-                                                    <a class="me-3 fa fa-toggle-off" href=""></a>
+                                                    <a class="me-3 fa fa-toggle-off" href="{{URL::to('/on-product/'.$product->product_id)}}"></a>
                                                 @endif
                                             </td>
                                             <td >

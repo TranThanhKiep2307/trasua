@@ -42,3 +42,6 @@ Route::get('/delete-product/{product_id}',[ProductController::class,'delete_prod
 
 Route::post('/save-product',[ProductController::class,'save_product']);
 Route::post('/update-product/{product_id}',[ProductController::class,'update_product']);
+
+Route::get('/on-product/{product_id}',[ProductController::class,'on_product']);
+Route::get('/off-product/{product_id}',[ProductController::class,'off_product']);

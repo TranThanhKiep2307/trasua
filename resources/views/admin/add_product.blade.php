@@ -24,7 +24,7 @@
                         <?php
                         $message = Session::get('message');
                         if($message){
-                            echo '<span>'.$message.'</span>';
+                            echo '<h5>'.$message.'</h5>';
                             Session::put('message',null);
                         }
                         ?>
@@ -35,6 +35,7 @@
                                 <label class="col-md-12 mb-0">Danh Mục Sản Phẩm</label>
                                 <div class="col-md-12">
                                     <select class="form-select shadow-none border-0 ps-0 form-control-line" name="category_product">
+                                        <option value="" disabled selected>Hãy chọn danh mục</option>
                                         @foreach($cate_product as $key => $cate)
                                         <option value="{{$cate->category_id}}">{{$cate->category_name}}</option>
                                         @endforeach
@@ -69,6 +70,7 @@
                                 <label class="col-md-12 mb-0">Trạng Thái Sản Phẩm</label>
                                 <div class="col-md-12">
                                     <select class="form-select shadow-none border-0 ps-0 form-control-line" name="product_status">
+                                        <option value="" disabled selected>Hãy chọn trạng thái</option>
                                         <option value="0">Còn bán</option>
                                         <option value="1">Tạm thời ngưng bán</option>
                                     </select>

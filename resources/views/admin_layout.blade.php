@@ -53,23 +53,19 @@
                     </ul>
                     <?php
                         $name = session()->get('admin_name');
-                        if($name) {
-                            echo '<ul class="navbar-nav">
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="'.asset('public/backend/assets/images/users/TK.jpg').'" alt="user" class="profile-pic me-2">
-                                            ' . $name . '
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="#">Thông tin</a></li>
-                                            <li><a class="dropdown-item" href="'. URL::to('/logout') .'">Đăng xuất</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>';
-                        } else {
-                            echo '<a class="nav-link dropdown-toggle waves-effect waves-dark" href="'.URL::to('/login').'">Đăng nhập</a>';
-                        }
                         ?>
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="<?php echo asset('public/backend/assets/images/users/TK.jpg'); ?>" alt="user" class="profile-pic me-2">
+                                    <?php echo $name; ?>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Thông tin</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo URL::to('/logout'); ?>">Đăng xuất</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                 </div>
             </nav>
         </header>
@@ -162,7 +158,6 @@
             });
         });
     </script>
-    
 </body>
 
 </html>

@@ -24,7 +24,7 @@
                         <?php
                         $message = Session::get('message');
                         if($message){
-                            echo '<span>'.$message.'</span>';
+                            echo '<h5>'.$message.'</h5>';
                             Session::put('message',null);
                         }
                         ?>
