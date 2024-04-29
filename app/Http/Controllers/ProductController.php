@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Support\Facades\Redirect;
+use Spatie\FlareClient\View;
+
 session_start();
 
 class ProductController extends Controller
@@ -102,5 +104,28 @@ class ProductController extends Controller
         DB::table('product_table')->where('product_id', $product_id)->update(['product_status'=> 1]);
         Session()->put('message','Dừng bán sản phẩm');
         return redirect::to('all-product');
+    }
+
+    //end admin
+    public function details_product($product_id){
+        $cate_product = DB::table('category_product_table')->orderBy('category_id')->get();
+        $details_product = DB::table('product_table')
+        ->join('category_product_table', 'category_product_table.category_id', 'product_table.category_id')
+        ->where('product_table.product_id', $product_id)
+        ->get();
+
+        foreach($details_product as $pr_dt){
+            $category_id = $pr_dt->category_id;
+        }
+            
+        $related_product = DB::table('product_table')
+                        ->join('category_product_table', 'category_product_table.category_id', 'product_table.category_id')
+                        ->where('category_product_table.category_id', $category_id)
+                        ->whereNotIn('product_table.product_id', [$product_id])
+                        ->get();
+        return view('pages.product.details_product')
+                ->with('category', $cate_product)
+                ->with('pro_details', $details_product)
+                ->with('pro_related', $related_product);
     }
 }

@@ -19,6 +19,7 @@ Route::get('/trang-chu', [HomeController::class,'index']);
 
 //Danh muc san pham trang chu
 Route::get('/danh_muc_sp/{category_id}', [CategoryProduct::class,'show_category_home']);
+Route::get('/chi_tiet_sp/{product_id}', [ProductController::class,'details_product']);
 
 
 
@@ -51,3 +52,12 @@ Route::post('/update-product/{product_id}',[ProductController::class,'update_pro
 
 Route::get('/on-product/{product_id}',[ProductController::class,'on_product']);
 Route::get('/off-product/{product_id}',[ProductController::class,'off_product']);
+
+//card
+Route::post('/save-cart',[CartController::class,'save_cart']);
+Route::post('/update-qty-cart',[CartController::class,'update_qty_cart']);
+Route::get('/show-cart',[CartController::class,'show_cart']);
+Route::get('/delete-cart/{rowId}',[CartController::class,'delete_cart']);
+
+//Checkout
+Route::get('/login-checkout',[CheckoutController::class,'login_checkout']);

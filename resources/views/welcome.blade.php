@@ -205,7 +205,7 @@
     <script src="{{ asset('public/frontend/js/jquery.slicknav.js') }}"></script>
     <script src="{{ asset('public/frontend/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('public/frontend/js/jquery.nicescroll.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/main.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/mainnew.js') }}"></script>
 </body>
 
 </html>
