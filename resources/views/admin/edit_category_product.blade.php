@@ -44,6 +44,13 @@
                                     <textarea  class="form-control ps-0 form-control-line" name="category_decs">{{$edit_value->category_decs}}</textarea>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-md-12 mb-0">Hình ảnh danh mục</label>
+                                <div class="col-md-12">
+                                    <input type="file" class="form-control ps-0 form-control-line" name="category_image">
+                                    <img src="{{URL::to('/public/images/category/'.$edit_value->category_image)}}" class="rounded-circle" width="50px">
+                                </div>
+                            </div>
                             <center><button type="submit" class="btn btn-success mx-auto mx-md-0 text-white" name="update-category-product">Cập nhật danh mục</button></center>
                         </form>
                         @endforeach

@@ -7,67 +7,27 @@
     <meta name="keywords" content="Cake, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cake | Template</title>
+    <title>Tý Tea</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('public/frontend/img/logonew.png') }}">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="public/frontend/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="public/frontend/css/flaticon.css" type="text/css">
-    <link rel="stylesheet" href="public/frontend/css/barfiller.css" type="text/css">
-    <link rel="stylesheet" href="public/frontend/css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="public/frontend/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="public/frontend/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="public/frontend/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="public/frontend/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="public/frontend/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="public/frontend/css/style.css" type="text/css">
+    <link rel="stylesheet" href="{{ asset('public/frontend/css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('public/frontend/css/flaticon.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('public/frontend/css/barfiller.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('public/frontend/css/magnific-popup.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('public/frontend/css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('public/frontend/css/elegant-icons.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('public/frontend/css/nice-select.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('public/frontend/css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('public/frontend/css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('public/frontend/css/stylemain.css') }}" type="text/css">
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <!-- <div id="preloder">
-        <div class="loader"></div>
-    </div> -->
-
-    <!-- Offcanvas Menu Begin -->
-    <div class="offcanvas-menu-overlay"></div>
-    <div class="offcanvas-menu-wrapper">
-        <div class="offcanvas__cart">
-            <div class="offcanvas__cart__links">
-                <a href="#" class="search-switch"><img src="public/frontend/img/icon/search.png" alt=""></a>
-                <a href="#"><img src="public/frontend/img/icon/heart.png" alt=""></a>
-            </div>
-            <div class="offcanvas__cart__item">
-                <a href="#"><img src="public/frontend/img/icon/cart.png" alt=""> <span>0</span></a>
-                <div class="cart__price">Cart: <span>$0.00</span></div>
-            </div>
-        </div>
-        <div class="offcanvas__logo">
-            <a href="./index.html"><img src="public/frontend/img/logo.png" alt=""></a>
-        </div>
-        <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__option">
-            <ul>
-                <li>USD <span class="arrow_carrot-down"></span>
-                    <ul>
-                        <li>EUR</li>
-                        <li>USD</li>
-                    </ul>
-                </li>
-                <li>ENG <span class="arrow_carrot-down"></span>
-                    <ul>
-                        <li>Spanish</li>
-                        <li>ENG</li>
-                    </ul>
-                </li>
-                <li><a href="#">Sign in</a> <span class="arrow_carrot-down"></span></li>
-            </ul>
-        </div>
-    </div>
-    <!-- Offcanvas Menu End -->
 
     <!-- Header Section Begin -->
     <header class="header">
@@ -78,20 +38,20 @@
                         <div class="header__top__inner">
                             <div class="header__top__left">
                                 <ul>
-                                    <li><a href="#">Sign in</a> <span class="arrow_carrot-down"></span></li>
+                                    <li><a href="#">Đăng ký</a> <span class="arrow_carrot-down"></span></li>
                                 </ul>
                             </div>
                             <div class="header__logo">
-                                <a href="./index.html"><img src="public/frontend/img/logo.png" alt=""></a>
+                                <a href="{{URL::to('/')}}"><img src="{{ asset('public/frontend/img/logonew.png') }}"  alt=""></a>
                             </div>
                             <div class="header__top__right">
                                 <div class="header__top__right__links">
-                                    <a href="#" class="search-switch"><img src="public/frontend/img/icon/search.png" alt=""></a>
-                                    <a href="#"><img src="public/frontend/img/icon/heart.png" alt=""></a>
+                                    <a href="#" class="search-switch"><img src="{{ asset('public/frontend/img/icon/search.png') }}" alt=""></a>
+                                    <a href="#"><img src="{{ asset('public/frontend/img/icon/heart.png') }}" alt=""></a>
                                 </div>
                                 <div class="header__top__right__cart">
-                                    <a href="#"><img src="public/frontend/img/icon/cart.png" alt=""> <span>0</span></a>
-                                    <div class="cart__price">Cart: <span>$0.00</span></div>
+                                    <a href="#"><img src="{{ asset('public/frontend/img/icon/cart.png') }}" alt=""> <span>0</span></a>
+                                    <div class="cart__price">Giỏ hàng: <span>$0.00</span></div>
                                 </div>
                             </div>
                         </div>
@@ -105,10 +65,9 @@
                 <div class="col-lg-12">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
-                            <li><a href="./about.html">About</a></li>
-                            <li><a href="./shop.html">Shop</a></li>
-                            <li><a href="#">Pages</a>
+                            <li class="active"><a href="{{URL::to('/')}}">Trang chủ</a></li>
+                            <li><a href="./shop.html">Cửa hàng</a></li>
+                            {{-- <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="./shop-details.html">Shop Details</a></li>
                                     <li><a href="./shoping-cart.html">Shoping Cart</a></li>
@@ -117,9 +76,15 @@
                                     <li><a href="./Class.html">Class</a></li>
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
-                            </li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
+                            </li> --}}
+                             {{-- <li><a href="#">Danh mục sản phẩm</a>
+                                <ul class="dropdown">
+                                    <li><a href="./shop-details.html">Shop Details</a></li>
+                                    
+                                </ul>
+                            </li> --}}
+                            <li><a href="./about.html">Về chúng tôi</a></li>
+                            <li><a href="./contact.html">Liên hệ</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -129,8 +94,8 @@
     <!-- Header Section End -->
     <!-- Hero Section Begin -->
     <section class="hero">
-        <div class="hero__slider owl-carousel">
-            <div class="hero__item set-bg" data-setbg="public/frontend/img/hero/hero-1.jpg">
+            <div class="hero__slider owl-carousel">
+            <div class="hero__item set-bg" data-setbg="{{ asset('public/frontend/img/hero/hero-1.jpg') }}">
                 <div class="container">
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-8">
@@ -142,7 +107,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hero__item set-bg" data-setbg="public/frontend/img/hero/hero-1.jpg">
+            <div class="hero__item set-bg" data-setbg="{{ asset('public/frontend/img/hero/hero-1.jpg') }}">
                 <div class="container">
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-8">
@@ -158,36 +123,57 @@
     </section>
     <!-- Hero Section End -->
 
+    <div class="categories">
+        <div class="container">
+            <div class="row">
+                <div class="categories__slider owl-carousel">
+                    @foreach ($category as $cate)
+                    <a href="{{ URL::to('/danh_muc_sp/'.$cate->category_id)}}"> 
+                        <div class="categories__item"> 
+                            <div class="categories__item__icon" style="text-align: center;">
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <img src="{{ URL::to('/public/images/category/'.$cate->category_image) }}" style="width: 100px; height: 100px;"></img>
+                                    <h5 style="margin-top: 10px;">{{$cate->category_name}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+
     @yield('content')
 
 
     <!-- Footer Section Begin -->
-    <footer class="footer set-bg" data-setbg="public/frontend/img/footer-bg.jpg">
+    <footer class="footer set-bg" data-setbg="{{ asset('public/frontend/img/footer-bg.jpg') }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="footer__widget">
-                        <h6>WORKING HOURS</h6>
+                        <h6>Thời gian mở cửa</h6>
                         <ul>
-                            <li>Monday - Friday: 08:00 am – 08:30 pm</li>
-                            <li>Saturday: 10:00 am – 16:30 pm</li>
-                            <li>Sunday: 10:00 am – 16:30 pm</li>
+                            <li>Thứ Hai - Chủ Nhật: 08:00 – 21:00 </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__logo">
-                            <a href="#"><img src="public/frontend/img/footer-logo.png" alt=""></a>
+                            <a href="#"><img src="{{ asset('public/frontend/img/logonew.png') }}" alt=""></a>
                         </div>
-                        <p>Lorem ipsum dolor amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore dolore magna aliqua.</p>
+                        <p>Chìm đắm trong thế giới hương vị tinh tế cùng TýTea - Nơi kết nối trà, sữa và đồ ăn vặt độc đáo!</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="footer__newslatter">
-                        <h6>Subscribe</h6>
-                        <p>Get latest updates and offers.</p>
+                        <h6>Đăng ký</h6>
+                        <p>Nhận những thông tin và ưu đãi mới nhất.</p>
                         <form action="#">
                             <input type="text" placeholder="Email">
                             <button type="submit"><i class="fa fa-send-o"></i></button>
@@ -204,22 +190,22 @@
         <div class="h-100 d-flex align-items-center justify-content-center">
             <div class="search-close-switch">+</div>
             <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
+                <input type="text" id="search-input" placeholder="Tìm kiếm...">
             </form>
         </div>
     </div>
     <!-- Search End -->
 
     <!-- Js Plugins -->
-    <script src="public/frontend/js/jquery-3.3.1.min.js"></script>
-    <script src="public/frontend/js/bootstrap.min.js"></script>
-    <script src="public/frontend/js/jquery.nice-select.min.js"></script>
-    <script src="public/frontend/js/jquery.barfiller.js"></script>
-    <script src="public/frontend/js/jquery.magnific-popup.min.js"></script>
-    <script src="public/frontend/js/jquery.slicknav.js"></script>
-    <script src="public/frontend/js/owl.carousel.min.js"></script>
-    <script src="public/frontend/js/jquery.nicescroll.min.js"></script>
-    <script src="public/frontend/js/main.js"></script>
+    <script src="{{ asset('public/frontend/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/jquery.barfiller.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/jquery.slicknav.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/main.js') }}"></script>
 </body>
 
 </html>

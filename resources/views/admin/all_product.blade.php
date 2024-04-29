@@ -62,17 +62,24 @@
                                         <tr>
                                             <td>{{$stt}}</td>
                                             <td>{{$product->product_id}}</td>
-                                            <td>{{$product->product_name}}</td>
-                                            <td>{{$product->category_name}}</td>
-                                            <td>{{$product->product_price}}</td>
+                                            <td>{{ Str::limit($product->product_name, 15)}}</td>
+                                            <td>{{ Str::limit($product->category_name, 15) }}</td>
+                                            <td>{{ number_format($product->product_price, 0, ',', '.') }} VNĐ</td>
                                             <td class="mt-4">
                                                 @if($product->product_image && file_exists(public_path('images/products/'.$product->product_image)))
-                                                    <img src="{{ URL::to('/public/images/products/'.$product->product_image) }}" class="rounded-circle" width="100px" />
+                                                    <img src="{{ URL::to('/public/images/products/'.$product->product_image) }}" class="rounded-circle" width="90px" />
                                                 @else
                                                     NULL
                                                 @endif
                                             </td>
-                                            <td style="text-align: left;">{{$product->product_decs}}</td>
+                                            <td >
+                                                @if($product->product_decs)
+                                                    {{ Str::limit($product->product_decs, 15) }}
+                                                @else
+                                                    NULL
+                                                @endif
+                                            </td>
+                                            
                                             <td>
                                                 @if($product->product_status == 0)
                                                     <a class="me-3 fa fa-toggle-on" href="{{URL::to('/off-product/'.$product->product_id)}}"></a>

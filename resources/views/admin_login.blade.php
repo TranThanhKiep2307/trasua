@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập</title>
+    <link rel="icon" href="{{asset('public/backend/assets/images/logonew.png')}}">
     <link rel="stylesheet" href="public/backend/css/style.login.css">
 </head>
 

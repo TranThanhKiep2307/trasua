@@ -43,6 +43,12 @@
                                     <textarea class="form-control ps-0 form-control-line" name="category_decs"></textarea>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-md-12 mb-0">Hình ảnh danh mục</label>
+                                <div class="col-md-12">
+                                    <input type="file" class="form-control ps-0 form-control-line" name="category_image">
+                                </div>
+                            </div>
                             <center><button type="submit" class="btn btn-success mx-auto mx-md-0 text-white" name="add-category-product">Thêm Danh Mục</button></center>
                         </form>
                     </div>

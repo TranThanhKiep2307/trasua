@@ -36,6 +36,7 @@
                                         <th class="border-top-0">Mã danh mục</th>
                                         <th class="border-top-0">Tên danh mục</th>
                                         <th class="border-top-0">Mô tả</th>
+                                        <th class="border-top-0">Hình ảnh</th>
                                         <th class="border-top-0">Chỉnh sửa</th>
                                     </tr>
                                 </thead>
@@ -60,6 +61,13 @@
                                             <td>{{$category_product->category_id}}</td>
                                             <td>{{$category_product->category_name}}</td>
                                             <td style="text-align: left;">{{$category_product->category_decs}}</td>
+                                            <td class="mt-4">
+                                                @if($category_product->category_image && file_exists(public_path('images/category/'.$category_product->category_image)))
+                                                    <img src="{{ URL::to('/public/images/category/'.$category_product->category_image) }}"  width="50px" />
+                                                @else
+                                                    NULL
+                                                @endif
+                                            </td>
                                             <td>
                                                 <a class="me-3 fas fa-pencil-alt" href="{{URL::to('/edit-category-product/'.$category_product->category_id)}}" aria-hidden="true"></a>
                                                 <a onclick="return confirm('Bạn chắc xóa danh mục này chứ?')" class="me-3 fas fa-trash" href="{{URL::to('/delete-category-product/'.$category_product->category_id)}}" aria-hidden="true"></a>

@@ -34,10 +34,23 @@ class CategoryProduct extends Controller
         $data = array();
         $data['category_name'] = $request->category_name;
         $data['category_decs'] = $request->category_decs;
-
+        $get_image = $request->file('category_image');
+        if($get_image){
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public/images/products',$new_image);
+            $data['product_image'] = $new_image;
+            DB::table('category_product_table')->insert($data);
+            Session()->put('message','Thêm danh mục sản phẩm thành công');
+            return redirect::to('all-category-product');
+        }
+        $data['product_image'] = '';
         DB::table('category_product_table')->insert($data);
         Session()->put('message','Thêm danh mục sản phẩm thành công');
-        return redirect::to('add-category-product');
+        return redirect::to('all-category-product');
+
+        
     }
     public function edit_category_product($category_id){
         $this->AuthLogin();
@@ -60,4 +73,18 @@ class CategoryProduct extends Controller
         Session()->put('message','Xóa danh mục sản phẩm thành công');
         return redirect::to('all-category-product');
     }
+
+//end admin
+public function show_category_home($category_id) {
+    $cate_product = DB::table('category_product_table')->orderBy('category_id')->get();
+    $all_product = DB::table('product_table')
+        ->join('category_product_table', 'category_product_table.category_id', 'product_table.category_id')
+        ->where('product_table.category_id', $category_id)
+        ->get();
+    return view('pages.category.show_cate')
+        ->with('category', $cate_product)
+        ->with('all_product', $all_product);
+}
+
+
 }

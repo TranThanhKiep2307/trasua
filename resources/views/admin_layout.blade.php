@@ -12,7 +12,7 @@
     <meta name="robots" content="noindex,nofollow">
     <title>Trang quản lý</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/monster-admin-lite/" />
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('public/backend/assets/images/favicon.png')}}">
+    <link rel="icon" href="{{asset('public/backend/assets/images/logonew.png')}}">
     <link href="{{asset('public/backend/plugins/chartist/dist/chartist.min.css')}}" rel="stylesheet">
     <link href="{{asset('public/backend/css/style.min.css')}}" rel="stylesheet">
     <style>
@@ -30,12 +30,11 @@
                 <div class="navbar-header" data-logobg="skin6">
                     <a class="navbar-brand" href="index.html">
                         <b class="logo-icon">
-                            <img src="{{asset('public/backend/assets/images/logo-icon.png')}}" alt="homepage" class="dark-logo" />
+                            <img src="{{asset('public/backend/assets/images/logonew.png')}}" width="80px" alt="homepage" class="dark-logo" />
 
                         </b>
                         <span class="logo-text">
-                            <img src="{{asset('public/backend/assets/images/logo-text.png')}}" alt="homepage" class="dark-logo" />
-
+                            Tý Tea Quản lý
                         </span>
                     </a>
                     <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
