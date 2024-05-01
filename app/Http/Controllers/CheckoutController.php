@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Support\Facades\Redirect;
 use Spatie\FlareClient\View;
+use Illuminate\Support\Facades\Cookie;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Http\Controllers\Card;
+
 
 class CheckoutController extends Controller
 {
@@ -52,23 +56,34 @@ class CheckoutController extends Controller
     }
 
     public function payment(){
+        $cate_product = DB::table('category_product_table')->orderBy('category_id')->get();
 
+        return view('pages.checkout.payment')->with('category', $cate_product);
     }
     
     public function login_customer(Request $request){
         $email = $request->email_acc;
         $password = $request->password_acc;
+        $remember = $request->has('remember'); // Kiểm tra xem người dùng đã chọn "Ghi nhớ đăng nhập" hay không
     
         $result = DB::table('customer_table')
             ->where('customer_email', $email)
+            ->orwhere('customer_phone', $email)
             ->where('customer_password', $password)
             ->first();
     
         if($result){
             session()->put('customer_id', $result->customer_id);
-            return redirect('/');
+    
+            // Nếu người dùng chọn "Ghi nhớ đăng nhập", lưu thông tin đăng nhập vào cookie
+            if ($remember) {
+                Cookie::queue('customer_email', $email, 60*24*30); // Lưu trong 30 ngày
+                Cookie::queue('customer_password', $password, 60*24*30); // Lưu trong 30 ngày
+            }
+    
+            return redirect::to('/');
         } else {
-            return redirect('/login-checkout');
+            return redirect::to('/login-checkout');
         }
     }
     
@@ -79,6 +94,47 @@ class CheckoutController extends Controller
         }
         // Chuyển hướng người dùng đến trang đăng nhập
         return Redirect::to('/login-checkout');
+    }
+    public function order_place(Request $request){
+        //get payment method 
+        $data = array();
+        $data['payment_method'] = $request->payment_option;
+        $data['payment_stt'] = 'Đang chờ xử lý';
+
+        $payment_id = DB::table('payment_table')->insertGetId($data);
+
+        //insert order        
+        $order_data = array();
+        $order_data['customer_id'] = session()->get('customer_id');
+        $order_data['shipping_id'] = session()->get('shipping_id');
+        $order_data['payment_id'] = $payment_id;
+        $order_data['order_total'] = Cart::total();
+        $order_data['order_stt'] = 'Đang chờ xử lý';
+
+        $order_id = DB::table('order_table')->insertGetId($order_data);
+
+        //insert order details
+        $content = Cart::content();
+        foreach($content as $v_content){
+            $order_d_data = array();
+            $order_d_data['order_id'] = $order_id;
+            $order_d_data['product_id'] = $v_content->id;
+            $order_d_data['product_name'] = $v_content->name;
+            $order_d_data['product_price'] = $v_content->price;
+            $order_d_data['product_sales_qty'] = $v_content->qty;
+            $order_d_data = DB::table('order_details_table')->insertGetId($order_d_data);
+        }
+        
+        if( $data['payment_method'] == 'Tiền mặt'){
+            Cart::destroy();
+
+            $cate_product = DB::table('category_product_table')->orderBy('category_id')->get();
+
+            return view('pages.checkout.handcash')->with('category', $cate_product);
+        }else{
+            Cart::destroy();
+            echo 'Thanh toán chuyển khoản';
+        }
     }
 
 }

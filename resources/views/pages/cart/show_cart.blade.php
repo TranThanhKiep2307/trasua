@@ -85,7 +85,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="continue__btn">
-                            <a href="#">Tiếp tục lựa món</a>
+                            <a href="{{URL::to('/trang-chu')}}">Tiếp tục lựa món</a>
                         </div>
                     </div>
                 </div>
@@ -108,12 +108,15 @@
                     </ul>
                     @php
                     $customer_id = Session::get('customer_id');
+                    $shipping_id = Session::get('shipping_id');
                     @endphp
-                    @if ($customer_id == NULL)
+                    @if ($customer_id != NULL && $shipping_id == NULL)
                     <a href="{{URL::to('/checkout')}}" class="primary-btn">Thanh toán</a>
+                    @elseif($customer_id != NULL && $shipping_id != NULL)
+                    <a href="{{URL::to('/payment')}}" class="primary-btn">Thanh toán</a>
                     @else
                     <a href="{{URL::to('/login-checkout')}}" class="primary-btn">Thanh toán</a>
-                    @endif
+                    @endif  
                 </div>
             </div>
         </div>

@@ -11,12 +11,12 @@
                     </div>
                     <form action="{{URL::to('/login-customer')}}" method="POST">
                         {{ csrf_field() }}  
-                        <input type="email_acc" placeholder="Email hoặc Số điện thoại">
-                        <input type="password_acc" placeholder="Mật khẩu">
+                        <input type="text" name="email_acc" placeholder="Email hoặc Số điện thoại">
+                        <input type="password" name="password_acc" placeholder="Mật khẩu">
                         <div class="checkout__input__checkbox">
                             <label for="acc">
                                 Ghi nhớ đăng nhập
-                                <input type="checkbox" id="acc">
+                                <input type="checkbox" id="acc" name="remember">
                                 <span class="checkmark"></span>
                             </label>
                         </div>

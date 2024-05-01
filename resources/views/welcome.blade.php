@@ -28,7 +28,6 @@
 </head>
 
 <body>
-
     <!-- Header Section Begin -->
     <header class="header">
         <div class="header__top">
@@ -60,11 +59,13 @@
                                     @php
                                         $customer_id = Session::get('customer_id');
                                     @endphp
-                                    @if ($customer_id == NULL)
-                                    <a href="{{URL::to('/login-checkout') }}"><img src="{{ asset('public/frontend/img/icon/enter.png') }}" width="30px" alt=""></a>
+
+                                    @if ($customer_id != NULL)
+                                        <a href="{{URL::to('/logout-checkout') }}"><img src="{{ asset('public/frontend/img/icon/logout.png') }}" width="30px" alt=""></a>
                                     @else
-                                    <a href="{{URL::to('/logout-checkout') }}"><img src="{{ asset('public/frontend/img/icon/logout.png') }}" width="30px" alt=""></a>
+                                        <a href="{{URL::to('/login-checkout') }}"><img src="{{ asset('public/frontend/img/icon/enter.png') }}" width="30px" alt=""></a>
                                     @endif
+
                                 </div>
                             </div>
                         </div>
@@ -100,9 +101,12 @@
                             <li><a href="./contact.html">Liên hệ</a></li>
                             @php
                             $customer_id = Session::get('customer_id');
+                            $shipping_id = Session::get('shipping_id');
                             @endphp
-                            @if ($customer_id = NULL)
+                            @if ($customer_id != NULL && $shipping_id == NULL)
                             <li><a href="{{URL::to('/checkout') }}">Thanh toán</a></li>
+                            @elseif($customer_id != NULL && $shipping_id != NULL)
+                            <li><a href="{{URL::to('/payment') }}">Thanh toán</a></li>
                             @else
                             <li><a href="{{URL::to('/login-checkout') }}">Thanh toán</a></li>
                             @endif                            

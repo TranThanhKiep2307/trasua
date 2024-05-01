@@ -24,7 +24,7 @@
     <div class="container">
         <div class="shop__option">
             <div class="row">
-                <div class="col-lg-7 col-md-7">
+                <div class="col-lg-12 col-md-12">
                     <div class="shop__option__search">
                         <form id="searchForm" action="{{URL::to('/tim-kiem')}}" method="POST">
                             {{ csrf_field() }}
