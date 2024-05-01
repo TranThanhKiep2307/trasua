@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tý Tea</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('public/frontend/img/logonew.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('public/frontend/img/logonew.png') }}">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -38,7 +38,7 @@
                         <div class="header__top__inner">
                             <div class="header__top__left">
                                 <ul>
-                                    <li><a href="#">Đăng ký</a> <span class="arrow_carrot-down"></span></li>
+                                    <a href="{{URL::to('/login-checkout')}}"><img src="{{ asset('public/frontend/img/icon/user.png') }}" width="30px" alt=""></a>
                                 </ul>
                             </div>
                             <div class="header__logo">
@@ -46,12 +46,25 @@
                             </div>
                             <div class="header__top__right">
                                 <div class="header__top__right__links">
-                                    <a href="#" class="search-switch"><img src="{{ asset('public/frontend/img/icon/search.png') }}" alt=""></a>
-                                    <a href="#"><img src="{{ asset('public/frontend/img/icon/heart.png') }}" alt=""></a>
+                                    <form action="{{URL::to('/tim-kiem')}}" method="post">
+                                        {{ csrf_field() }}
+                                    <input type="text"  name="keyword_submit"  placeholder="Tìm kiếm..."></input>
+                                    </form>
+                                    {{-- <a href="{{URL::to('/wishlist')}}"><img src="{{ asset('public/frontend/img/icon/heart.png') }}" alt=""></a> --}}
                                 </div>
                                 <div class="header__top__right__cart">
-                                    <a href="#"><img src="{{ asset('public/frontend/img/icon/cart.png') }}" alt=""> <span>0</span></a>
+                                    <a href="{{URL::to('/show-cart')}}"><img src="{{ asset('public/frontend/img/icon/cart.png') }}" alt=""> <span>0</span></a>
                                     <div class="cart__price">Giỏ hàng: <span>$0.00</span></div>
+                                </div>
+                                <div class="header__top__right__cart">
+                                    @php
+                                        $customer_id = Session::get('customer_id');
+                                    @endphp
+                                    @if ($customer_id == NULL)
+                                    <a href="{{URL::to('/login-checkout') }}"><img src="{{ asset('public/frontend/img/icon/enter.png') }}" width="30px" alt=""></a>
+                                    @else
+                                    <a href="{{URL::to('/logout-checkout') }}"><img src="{{ asset('public/frontend/img/icon/logout.png') }}" width="30px" alt=""></a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -85,6 +98,16 @@
                             </li> --}}
                             <li><a href="./about.html">Về chúng tôi</a></li>
                             <li><a href="./contact.html">Liên hệ</a></li>
+                            @php
+                            $customer_id = Session::get('customer_id');
+                            @endphp
+                            @if ($customer_id = NULL)
+                            <li><a href="{{URL::to('/checkout') }}">Thanh toán</a></li>
+                            @else
+                            <li><a href="{{URL::to('/login-checkout') }}">Thanh toán</a></li>
+                            @endif                            
+                            
+
                         </ul>
                     </nav>
                 </div>
@@ -206,6 +229,39 @@
     <script src="{{ asset('public/frontend/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('public/frontend/js/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ asset('public/frontend/js/mainnew.js') }}"></script>
+    <script>
+        document.getElementById('categorySelect').onchange = function() {
+            var categoryId = this.value;
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '{{ URL::to('/tim-kiem') }}';
+            
+            var csrfField = document.createElement('input');
+            csrfField.setAttribute('type', 'hidden');
+            csrfField.setAttribute('name', '_token');
+            csrfField.setAttribute('value', '{{ csrf_token() }}');
+            form.appendChild(csrfField);
+    
+            var categoryIdField = document.createElement('input');
+            categoryIdField.setAttribute('type', 'hidden');
+            categoryIdField.setAttribute('name', 'category_id');
+            categoryIdField.setAttribute('value', categoryId);
+            form.appendChild(categoryIdField);
+    
+            document.body.appendChild(form);
+            form.submit();
+        };
+    </script>
+    <script>
+        function updateCheckboxValue(checkbox) {
+            if (checkbox.checked) {
+                checkbox.value = 1; // Chọn: đặt giá trị là 1
+            } else {
+                checkbox.value = 0; // Không chọn: đặt giá trị là 0
+            }
+        }
+    </script>
+    
 </body>
 
 </html>
