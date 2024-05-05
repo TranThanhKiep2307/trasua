@@ -161,7 +161,7 @@ class CheckoutController extends Controller
         $order_data['shipping_id'] = session()->get('shipping_id');
         $order_data['payment_id'] = $payment_id;
         $order_data['order_total'] =  number_format(Cart::subtotal(), 0, ',', '.');
-        $order_data['order_stt'] = 'Đang chờ xử lý';
+        $order_data['order_stt'] = '0';
 
         $order_id = DB::table('order_table')->insertGetId($order_data);
 
@@ -216,6 +216,7 @@ class CheckoutController extends Controller
     }
 
     public function view_order($order_id){
+        $this->AuthLogin();
         // Lấy thông tin chung của đơn hàng
         $order_by_id = DB::table('order_table')
             ->join('customer_table', 'order_table.customer_id', 'customer_table.customer_id')
@@ -237,6 +238,7 @@ class CheckoutController extends Controller
     
     
     public function delete_order($order_id){
+        $this->AuthLogin();
         // Xóa các chi tiết đơn hàng
         DB::table('order_details_table')
             ->where('order_id', $order_id)
@@ -258,6 +260,7 @@ class CheckoutController extends Controller
     }
     
     public function check_discount(Request $request){
+        $this->AuthLogin();
         $data = $request->all();
         $coupon = DB::table('counpon_table')->where('counpon_code', $data['counpon'])->first();
         if($coupon){
@@ -287,6 +290,31 @@ class CheckoutController extends Controller
             return redirect()->back()->with('error', 'Áp dụng mã giảm giá thất bại');
         }
     }
+    public function change_order($order_id){
+        $this->AuthLogin();
+        $order = DB::table('order_table')->where('order_id', $order_id)->get();
+        // Chuyển hướng về trang hiển thị thông tin khách hàng hoặc trang cập nhật thông tin
+        return view('admin.change_order')->with('order', $order);
+    }
+    public function update_stt_order(Request $request, $order_id){
+        $this->AuthLogin();
+        
+        // Lấy giá trị trạng thái đơn hàng từ biểu mẫu
+        $order_stt = $request->input('order_stt');
     
-
+        // Tạo một mảng chứa dữ liệu cần cập nhật
+        $data = [
+            'order_stt' => $order_stt
+        ];
+    
+        // Cập nhật trạng thái của đơn hàng trong cơ sở dữ liệu
+        DB::table('order_table')->where('order_id', $order_id)->update($data);
+    
+        // Đặt thông báo thành công vào Session
+        session()->flash('success', 'Cập nhật trạng thái thành công');
+    
+        // Chuyển hướng về trang quản lý đơn hàng
+        return redirect::to('manager-order');
+    }
+    
 }

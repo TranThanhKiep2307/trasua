@@ -39,13 +39,13 @@
                                         <th class="border-top-0">Hình thức thanh toán</th>
                                         <th class="border-top-0">Tổng đơn hàng</th>
                                         <th class="border-top-0">Trạng thái đơn hàng</th>
-                                        <th class="border-top-0">Chỉnh sửa đơn hàng</th>
+                                        <th class="border-top-0">Chi tiết đơn hàng</th>
 
                                         </tr>
                                 </thead>
                                 <tbody style="text-align: center;">
                                     <style>
-                                        .me-3.fa.fa-toggle-on, .me-3.fas.fa-pencil-alt  {
+                                        .me-3.fa.fa-toggle-on, .me-3.fas.fa-eye, .me-3.fas.fa-pencil-alt  {
                                             color: green; 
                                             font-size: 30px;
                                         }
@@ -76,10 +76,21 @@
                                             
                                             
                                             <td>
-                                                {{$order->order_stt}}
+                                                @if($order->order_stt==0)
+                                                Đang chờ xử lý
+                                                @elseif($order->order_stt==1)
+                                                Đang thực hiện
+                                                @elseif($order->order_stt==2)
+                                                Đã thanh toán
+                                                @elseif($order->order_stt==3)
+                                                Đang giao hàng
+                                                @elseif($order->order_stt==4)
+                                                Đã hoàn thành
+                                                @endif
                                             </td>
-                                            <td >
-                                                <a class="me-3 fas fa-pencil-alt" href="{{URL::to('/view-order/'.$order->order_id)}}" aria-hidden="true"></a>
+                                            <td >   
+                                                <a class="me-3 fas fa-eye"  href="{{URL::to('/view-order/'.$order->order_id)}}" aria-hidden="true"></a>
+                                                <a class="me-3 fas fa-pencil-alt" href="{{URL::to('/change-order/'.$order->order_id)}}" aria-hidden="true"></a>
                                                 <a onclick="return confirm('Bạn chắc xóa đơn hàng này chứ?')" class="me-3 fas fa-trash" href="{{URL::to('/delete-order/'.$order->order_id)}}" aria-hidden="true"></a>
                                             </td>
                                         </tr>

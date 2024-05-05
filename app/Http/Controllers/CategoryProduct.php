@@ -79,6 +79,7 @@ public function show_category_home($category_id) {
     $cate_product = DB::table('category_product_table')->orderBy('category_id')->get();
     $all_product = DB::table('product_table')
         ->join('category_product_table', 'category_product_table.category_id', 'product_table.category_id')
+        ->where('product_table.product_status', 0)
         ->where('product_table.category_id', $category_id)
         ->get();
     return view('pages.category.show_cate')

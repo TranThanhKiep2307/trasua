@@ -29,7 +29,7 @@ class ProductController extends Controller
     public function all_product(){
         $this->AuthLogin();
         $all_product = DB::table('product_table')->join('category_product_table', 'category_product_table.category_id', 'product_table.category_id')
-        ->orderByDesc('product_table.product_id')->get();
+        ->orderByDesc('product_table.product_id')->paginate(10);
         return view('admin.all_product', ['all_product' => $all_product]);
     }    
     public function save_product(Request $request){

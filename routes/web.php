@@ -20,14 +20,9 @@ Route::post('/tim-kiem', [HomeController::class,'search']);
 Route::get('/show-customer', [CheckoutController::class,'show_customer']);
 Route::post('/update-customer/{customer_id}', [CheckoutController::class,'update_customer']);
 
-
 //Danh muc san pham trang chu
 Route::get('/danh_muc_sp/{category_id}', [CategoryProduct::class,'show_category_home']);
 Route::get('/chi_tiet_sp/{product_id}', [ProductController::class,'details_product']);
-
-
-
-
 
 //Backend
 Route::get('/admin', [AdminController::class,'index']);
@@ -41,7 +36,6 @@ Route::get('/add-category-product',[CategoryProduct::class,'add_category_product
 Route::get('/all-category-product',[CategoryProduct::class,'all_category_product']);
 Route::get('/edit-category-product/{category_id}',[CategoryProduct::class,'edit_category_product']);
 Route::get('/delete-category-product/{category_id}',[CategoryProduct::class,'delete_category_product']);
-
 Route::post('/save-category-product',[CategoryProduct::class,'save_category_product']);
 Route::post('/update-category-product/{category_id}',[CategoryProduct::class,'update_category_product']);
 
@@ -50,10 +44,8 @@ Route::get('/add-product',[ProductController::class,'add_product']);
 Route::get('/all-product',[ProductController::class,'all_product']);
 Route::get('/edit-product/{product_id}',[ProductController::class,'edit_product']);
 Route::get('/delete-product/{product_id}',[ProductController::class,'delete_product']);
-
 Route::post('/save-product',[ProductController::class,'save_product']);
 Route::post('/update-product/{product_id}',[ProductController::class,'update_product']);
-
 Route::get('/on-product/{product_id}',[ProductController::class,'on_product']);
 Route::get('/off-product/{product_id}',[ProductController::class,'off_product']);
 
@@ -77,6 +69,8 @@ Route::post('/order-place',[CheckoutController::class,'order_place']);
 Route::get('/manager-order',[CheckoutController::class,'manager_order']);
 Route::get('/view-order/{order_id}',[CheckoutController::class,'view_order']);
 Route::get('/delete-order/{order_id}',[CheckoutController::class,'delete_order']);
+Route::get('/change-order/{order_id}',[CheckoutController::class,'change_order']);
+Route::post('/update-stt-order/{order_id}',[CheckoutController::class,'update_stt_order']);
 
 //Counpon
 Route::post('/check-discount',[CheckoutController::class,'check_discount']);

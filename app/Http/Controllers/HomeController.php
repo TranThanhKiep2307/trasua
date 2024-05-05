@@ -13,7 +13,9 @@ class HomeController extends Controller
 {
     public function index(){
         $cate_product = DB::table('category_product_table')->orderBy('category_id')->get();
-        $all_product = DB::table('product_table')->join('category_product_table', 'category_product_table.category_id', 'product_table.category_id')
+        $all_product = DB::table('product_table')
+        ->join('category_product_table', 'category_product_table.category_id', 'product_table.category_id')
+        ->where('product_table.product_status', 0)
         ->limit(8)->get();
         return view('pages.home')-> with('category', $cate_product)->with('all_product',$all_product);
     }
@@ -45,6 +47,4 @@ class HomeController extends Controller
                 ->with('keyword', $keyword)
                 ->with('categoryId', $categoryId);
     }
-    
-    
 }
