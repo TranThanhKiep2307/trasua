@@ -26,6 +26,24 @@
             </a>
             @endforeach
         </div>
+        <div class="shop__last__option">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="shop__pagination">
+                        @foreach ($all_product->links()->elements[0] as $page => $url)
+                            <a href="{{ $url }}">{{ $page }}</a>
+                        @endforeach
+                        <a href="{{ $all_product->nextPageUrl() }}"><span class="arrow_carrot-right"></span></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="shop__last__text">
+                        <p>Showing {{ $all_product->firstItem() }}-{{ $all_product->lastItem() }} of {{ $all_product->total() }} results</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
 </section>
 <!-- Product Section End -->

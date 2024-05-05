@@ -16,7 +16,7 @@ class HomeController extends Controller
         $all_product = DB::table('product_table')
         ->join('category_product_table', 'category_product_table.category_id', 'product_table.category_id')
         ->where('product_table.product_status', 0)
-        ->limit(8)->get();
+        ->paginate(8);
         return view('pages.home')-> with('category', $cate_product)->with('all_product',$all_product);
     }
 

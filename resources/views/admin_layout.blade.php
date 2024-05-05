@@ -90,7 +90,7 @@
                                 <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/add-category-product')}}"
                                         aria-expanded="false">
-                                        <i class="me-3 fa fa-table" aria-hidden="false"></i>
+                                        <i class="me-3 fa fa-plus" aria-hidden="false"></i>
                                         <span>Thêm danh mục</span>
                                     </a>
                                 </li>
@@ -113,7 +113,7 @@
                                 <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/add-product')}}"
                                         aria-expanded="false">
-                                        <i class="me-3 fa fa-table" aria-hidden="false"></i>
+                                        <i class="me-3 fa fa-plus" aria-hidden="false"></i>
                                         <span>Thêm sản phẩm</span>
                                     </a>
                                 </li>
@@ -152,7 +152,7 @@
                                 <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/insert-counpon')}}"
                                         aria-expanded="false">
-                                        <i class="me-3 fa fa-table" aria-hidden="false"></i>
+                                        <i class="me-3 fa fa-plus" aria-hidden="false"></i>
                                         <span>Thêm mã giảm giá</span>
                                     </a>
                                 </li>
@@ -164,6 +164,99 @@
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                        <li class="sidebar-item dropdown">
+                            <span class="sidebar-link waves-effect waves-dark toggleSubMenu">
+                                <i class="me-3 fas fa-truck" aria-hidden="true"></i>
+                                <span>Nhà cung cấp</span> 
+                                <i class="fa fa-caret-down" aria-hidden="false"></i>
+                            </span>
+                            <ul class="sidebar-submenu" id="subMenu2">
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/insert-counpon')}}"
+                                        aria-expanded="false">
+                                        <i class="me-3 fa fa-plus" aria-hidden="false"></i>
+                                        <span>Thêm nhà cung cấp</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/list-counpon')}}"
+                                        aria-expanded="false">
+                                        <i class="me-3 fa fa-table" aria-hidden="false"></i>
+                                        <span>Danh sách nhà cung cấp</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item dropdown">
+                            <span class="sidebar-link waves-effect waves-dark toggleSubMenu">
+                                <i class="me-3 fas fa-warehouse" aria-hidden="true"></i>
+                                <span>Quản lí nguyên liệu</span> 
+                                <i class="fa fa-caret-down" aria-hidden="false"></i>
+                            </span>
+                            <ul class="sidebar-submenu" id="subMenu2">
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/insert-counpon')}}"
+                                        aria-expanded="false">
+                                        <i class="me-3 fa fa-plus" aria-hidden="false"></i>
+                                        <span>Thêm nguyên liệu</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/insert-counpon')}}"
+                                        aria-expanded="false">
+                                        <i class="me-3 fa fa-table" aria-hidden="false"></i>
+                                        <span>Danh sách nguyên liệu</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item dropdown">
+                            <span class="sidebar-link waves-effect waves-dark toggleSubMenu">
+                                <i class="me-3 fas fa-warehouse" aria-hidden="true"></i>
+                                <span>Quản lí kho hàng</span> 
+                                <i class="fa fa-caret-down" aria-hidden="false"></i>
+                            </span>
+                            <ul class="sidebar-submenu" id="subMenu2">
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/insert-counpon')}}"
+                                        aria-expanded="false">
+                                        <i class="me-3 fa fa-chart-pie" aria-hidden="false"></i>
+                                        <span>Thống kê kho hàng</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/insert-counpon')}}"
+                                        aria-expanded="false">
+                                        <i class="me-3 fa fa-table" aria-hidden="false"></i>
+                                        <span>Danh sách kho hàng</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item dropdown">
+                            <span class="sidebar-link waves-effect waves-dark toggleSubMenu">
+                                <i class="me-3 fas fa-boxes" aria-hidden="true"></i>
+                                <span>Quản lý hệ thống</span> 
+                                <i class="fa fa-caret-down" aria-hidden="false"></i>
+                            </span>
+                            <ul class="sidebar-submenu" id="subMenu1">
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/insert-counpon')}}"
+                                        aria-expanded="false">
+                                        <i class="me-3 fa fa-chart-pie" aria-hidden="false"></i>
+                                        <span>Thống kê doanh thu</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/insert-counpon')}}"
+                                        aria-expanded="false">
+                                        <i class="me-3 fa fa-comments" aria-hidden="false"></i>
+                                        <span>Bình luận đánh giá</span>
+                                    </a>
+                                </li>
+                            </ul>
+                                
                         </li>
                     </ul>
                 </nav>

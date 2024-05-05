@@ -79,7 +79,7 @@
         @else
             <h3>Không có sản phẩm bạn cần tìm. Chúng tôi sẽ cập nhật thêm!!!</h3>
         @endif
-        {{-- <div class="shop__last__option">
+        <div class="shop__last__option">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="shop__pagination">
@@ -95,7 +95,7 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
     </div>
 </section>
 
