@@ -61,7 +61,7 @@
                         <div class="product__details__option">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input name="qty" type="number" value="1">
+                                    <input name="qty" type="number" value="1" max="20">
                                     <input name="pro_id" type="hidden" value="{{$pro_dt->product_id}}">
                                 </div>
                             </div>

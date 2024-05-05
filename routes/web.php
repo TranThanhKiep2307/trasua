@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class,'index']);
 Route::get('/trang-chu', [HomeController::class,'index']);
 Route::post('/tim-kiem', [HomeController::class,'search']);
+Route::get('/show-customer', [CheckoutController::class,'show_customer']);
+Route::post('/update-customer/{customer_id}', [CheckoutController::class,'update_customer']);
 
 
 //Danh muc san pham trang chu
@@ -70,6 +72,22 @@ Route::get('/checkout',[CheckoutController::class,'checkout']);
 Route::post('/save-checkout',[CheckoutController::class,'save_checkout']);
 Route::get('/payment',[CheckoutController::class,'payment']);
 Route::post('/order-place',[CheckoutController::class,'order_place']);
+
+//Order
+Route::get('/manager-order',[CheckoutController::class,'manager_order']);
+Route::get('/view-order/{order_id}',[CheckoutController::class,'view_order']);
+Route::get('/delete-order/{order_id}',[CheckoutController::class,'delete_order']);
+
+//Counpon
+Route::post('/check-discount',[CheckoutController::class,'check_discount']);
+Route::get('/insert-counpon',[CounponController::class,'insert_counpon']);
+Route::get('/list-counpon',[CounponController::class,'list_counpon']);
+Route::post('/insert-counpon-code',[CounponController::class,'insert_counpon_code']);
+Route::get('/edit-counpon/{counpon_id}',[CounponController::class,'edit_counpon']);
+Route::post('/update-counpon/{counpon_id}',[CounponController::class,'update_counpon']);
+Route::get('/delete-counpon/{counpon_id}',[CounponController::class,'delete_counpon']);
+Route::get('/unset-counpon',[CounponController::class,'unset_counpon']);
+
 
 
 

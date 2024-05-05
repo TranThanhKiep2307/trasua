@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 mb-0">Mô tả</label>
                                 <div class="col-md-12">
-                                    <textarea class="form-control ps-0 form-control-line" name="category_decs"></textarea>
+                                    <textarea class="form-control ps-0 form-control-line" style="resize: none" rows="8" id="decs_cate" name="category_decs"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">

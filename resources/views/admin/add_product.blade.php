@@ -63,7 +63,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 mb-0">Mô tả Sản Phẩm</label>
                                 <div class="col-md-12">
-                                    <textarea class="form-control ps-0 form-control-line" name="product_decs"></textarea>
+                                    <textarea class="form-control ps-0 form-control-line" id="desc_pro" name="product_decs"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">

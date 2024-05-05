@@ -56,18 +56,17 @@
                         </div>
                         <div class="checkout__input__checkbox">
                             <label for="diff-acc">
-                                Lưu ý về đơn đặt hàng của bạn, ví dụ: lượng đá, lượng đường, đá chung hay riêng
+                                Lưu ý về đơn đặt hàng của bạn, ví dụ: Giao ở trước cống Trường CNTT
                                 <input type="checkbox" id="diff-acc" name="shipping_ynnote" onchange="updateCheckboxValue(this)">
                                 <span class="checkmark"></span>
                             </label>
                         </div>
                         
                         
-                        
                         <div class="checkout__input">
                             <p>Ghi chú</p>
                             <input type="text" name="shipping_infnote"
-                            placeholder="Lưu ý về đơn đặt hàng của bạn, ví dụ: thông báo đặc biệt về giao hàng" >
+                            placeholder="Lưu ý về đơn đặt hàng của bạn, ví dụ: Giao ở trước cống Trường CNTT" >
                         </div>
                         <button type="submit" name="save_order" class="site-btn">Xác nhận thông tin</button>
                     </form>

@@ -82,7 +82,7 @@
                         </li>
                         <li class="sidebar-item dropdown">
                             <span class="sidebar-link waves-effect waves-dark toggleSubMenu">
-                                <i class="me-3 fas fa-utensils" aria-hidden="true"></i>
+                                <i class="me-3 fas fa-bars" aria-hidden="true"></i>
                                 <span>Danh mục sản phẩm</span> 
                                 <i class="fa fa-caret-down" aria-hidden="false"></i>
                             </span>
@@ -126,21 +126,60 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="sidebar-item dropdown">
+                            <span class="sidebar-link waves-effect waves-dark toggleSubMenu">
+                                <i  class="me-3 fas fa-bullhorn" aria-hidden="true"></i>
+                                <span>Đơn hàng</span> 
+                                <i class="fa fa-caret-down" aria-hidden="false"></i>
+                            </span>
+                            <ul class="sidebar-submenu" id="subMenu2">
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/manager-order')}}"
+                                        aria-expanded="false">
+                                        <i class="me-3 fa fa-table" aria-hidden="false"></i>
+                                        <span>Quản lý đơn hàng</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item dropdown">
+                            <span class="sidebar-link waves-effect waves-dark toggleSubMenu">
+                                <i class="me-3 fas fa-star" aria-hidden="true"></i>
+                                <span>Mã giảm giá</span> 
+                                <i class="fa fa-caret-down" aria-hidden="false"></i>
+                            </span>
+                            <ul class="sidebar-submenu" id="subMenu2">
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/insert-counpon')}}"
+                                        aria-expanded="false">
+                                        <i class="me-3 fa fa-table" aria-hidden="false"></i>
+                                        <span>Thêm mã giảm giá</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/list-counpon')}}"
+                                        aria-expanded="false">
+                                        <i class="me-3 fa fa-table" aria-hidden="false"></i>
+                                        <span>Danh sách mã giảm giá</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
             </div>
         </aside>
         @yield('admin_content')
     </div>
-    <script src="public/backend/assets/plugins/jquery/dist/jquery.min.js"></script>
-    <script src="public/backend/assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="public/backend/js/app-style-switcher.js"></script>
-    <script src="public/backend/js/waves.js"></script>
-    <script src="public/backend/js/sidebarmenu.js"></script>
-    <script src="public/backend/js/custom.js"></script>
-    <script src="public/backend/assets/plugins/flot/jquery.flot.js"></script>
-    <script src="public/backend/assets/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-    <script src="public/backend/js/pages/dashboards/dashboard1.js"></script>
+    <script src="{{asset('public/backend/assets/plugins/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{asset('public/backend/assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('public/backend/js/app-style-switcher.js')}}"></script>
+    <script src="{{asset('public/backend/js/waves.js')}}"></script>
+    <script src="{{asset('public/backend/js/sidebarmenu.js')}}"></script>
+    <script src="{{asset('public/backend/js/custom.js')}}"></script>
+    <script src="{{asset('public/backend/assets/plugins/flot/jquery.flot.js')}}"></script>
+    <script src="{{asset('public/backend/assets/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js')}}"></script>
+    <script src="{{asset('public/backend/js/pages/dashboards/dashboard1.js')}}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var toggleSubMenu = document.querySelectorAll('.toggleSubMenu');

@@ -38,6 +38,14 @@
                             <div class="header__top__left">
                                 <ul>
                                     <a href="{{URL::to('/login-checkout')}}"><img src="{{ asset('public/frontend/img/icon/user.png') }}" width="30px" alt=""></a>
+                                    <?php
+                                        if($name = session()->get('customer_name'))
+                                            echo 'Xin chào '.$name; 
+                                        else {
+                                            echo 'Đăng nhập';
+                                        }
+                                    ?>
+
                                 </ul>
                             </div>
                             <div class="header__logo">
@@ -52,8 +60,23 @@
                                     {{-- <a href="{{URL::to('/wishlist')}}"><img src="{{ asset('public/frontend/img/icon/heart.png') }}" alt=""></a> --}}
                                 </div>
                                 <div class="header__top__right__cart">
-                                    <a href="{{URL::to('/show-cart')}}"><img src="{{ asset('public/frontend/img/icon/cart.png') }}" alt=""> <span>0</span></a>
-                                    <div class="cart__price">Giỏ hàng: <span>$0.00</span></div>
+                                    <a href="{{ URL::to('/show-cart') }}">
+                                        <img src="{{ asset('public/frontend/img/icon/cart.png') }}" alt=""> 
+                                        <span>
+                                            {{-- Hiển thị số lượng sản phẩm trong giỏ hàng --}}
+                                            @php
+                                                $cart_count = Cart::count();
+                                                echo $cart_count;
+                                            @endphp
+                                        </span>
+                                    </a>
+                                    <div class="cart__price">
+                                        Tổng tiền 
+                                        <span>
+                                            {{-- Hiển thị tổng tiền --}}
+                                            {{ number_format(Cart::subtotal(),0,',','.')  }} VNĐ
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="header__top__right__cart">
                                     @php
@@ -79,48 +102,34 @@
                 <div class="col-lg-12">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="{{URL::to('/')}}">Trang chủ</a></li>
-                            <li><a href="./shop.html">Cửa hàng</a></li>
-                            {{-- <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./wisslist.html">Wisslist</a></li>
-                                    <li><a href="./Class.html">Class</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li> --}}
-                             {{-- <li><a href="#">Danh mục sản phẩm</a>
-                                <ul class="dropdown">
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    
-                                </ul>
-                            </li> --}}
-                            <li><a href="./about.html">Về chúng tôi</a></li>
-                            <li><a href="./contact.html">Liên hệ</a></li>
+                            <li class="active"><a href="{{URL::to('/')}}" data-page="home">Trang chủ</a></li>
+                            <li><a href="{{ URL::to('/show-cart') }}" data-page="cart">Giỏ hàng</a></li>
                             @php
                             $customer_id = Session::get('customer_id');
                             $shipping_id = Session::get('shipping_id');
                             @endphp
                             @if ($customer_id != NULL && $shipping_id == NULL)
-                            <li><a href="{{URL::to('/checkout') }}">Thanh toán</a></li>
+                            <li><a href="{{URL::to('/checkout') }}" data-page="checkout">Thanh toán</a></li>
                             @elseif($customer_id != NULL && $shipping_id != NULL)
-                            <li><a href="{{URL::to('/payment') }}">Thanh toán</a></li>
+                            <li><a href="{{URL::to('/payment') }}" data-page="payment">Thanh toán</a></li>
                             @else
-                            <li><a href="{{URL::to('/login-checkout') }}">Thanh toán</a></li>
+                            <li><a href="{{URL::to('/login-checkout') }}" data-page="login">Thanh toán</a></li>
+                            @endif
+                            @if ($customer_id != NULL)
+                            <li><a href="{{URL::to('/show-customer')}}" data-page="customer">Tài khoản</a></li>  
+                            @else
+                                
                             @endif                            
-                            
-
                         </ul>
                     </nav>
                 </div>
+                
             </div>
         </div>
     </header>
     <!-- Header Section End -->
     <!-- Hero Section Begin -->
-    <section class="hero">
+    {{-- <section class="hero">
             <div class="hero__slider owl-carousel">
             <div class="hero__item set-bg" data-setbg="{{ asset('public/frontend/img/hero/hero-1.jpg') }}">
                 <div class="container">
@@ -147,7 +156,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Hero Section End -->
 
     <div class="categories">
@@ -224,6 +233,13 @@
     <!-- Search End -->
 
     <!-- Js Plugins -->
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+        <df-messenger
+        intent="WELCOME"
+        chat-title="TyTea"
+        agent-id="9bdbb5ed-bbf5-4a66-ac37-e59a809fa8fa"
+        language-code="vi"
+        ></df-messenger>
     <script src="{{ asset('public/frontend/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('public/frontend/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('public/frontend/js/jquery.nice-select.min.js') }}"></script>
@@ -265,7 +281,33 @@
             }
         }
     </script>
-    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        // Lấy địa chỉ URL hiện tại
+        var currentURL = window.location.href;
+
+        // Lấy tất cả các thẻ <a> trong menu
+        var menuLinks = document.querySelectorAll(".header__menu.mobile-menu ul li a");
+
+        // Lặp qua mỗi liên kết trong menu
+        menuLinks.forEach(function(link) {
+            // Lấy trang được đánh dấu của liên kết
+            var linkPage = link.getAttribute("data-page");
+
+            // Kiểm tra nếu URL hiện tại chứa trang được đánh dấu hoặc là trang chủ
+            if (currentURL.includes(linkPage) || (linkPage === "home" && currentURL === window.location.origin + "/")) {
+                // Loại bỏ lớp "active" từ tất cả các mục menu
+                var menuItems = document.querySelectorAll(".header__menu.mobile-menu ul li");
+                menuItems.forEach(function(item) {
+                    item.classList.remove("active");
+                });
+
+                // Thêm lớp "active" cho thẻ <li> chứa liên kết được bấm
+                link.parentNode.classList.add("active");
+            }
+        });
+    });
+    </script>
 </body>
 
 </html>

@@ -31,7 +31,7 @@
 <!-- Product Section End -->
 
 <!-- Testimonial Section Begin -->
-<section class="testimonial spad">
+{{-- <section class="testimonial spad">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -68,6 +68,6 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- Testimonial Section End -->
 @endsection
