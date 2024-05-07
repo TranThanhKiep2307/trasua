@@ -173,14 +173,14 @@
                             </span>
                             <ul class="sidebar-submenu" id="subMenu2">
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/insert-counpon')}}"
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/add-supplier')}}"
                                         aria-expanded="false">
                                         <i class="me-3 fa fa-plus" aria-hidden="false"></i>
                                         <span>Thêm nhà cung cấp</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/list-counpon')}}"
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/all-supplier')}}"
                                         aria-expanded="false">
                                         <i class="me-3 fa fa-table" aria-hidden="false"></i>
                                         <span>Danh sách nhà cung cấp</span>
@@ -196,14 +196,14 @@
                             </span>
                             <ul class="sidebar-submenu" id="subMenu2">
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/insert-counpon')}}"
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/add-material')}}"
                                         aria-expanded="false">
                                         <i class="me-3 fa fa-plus" aria-hidden="false"></i>
                                         <span>Thêm nguyên liệu</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/insert-counpon')}}"
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/all-material')}}"
                                         aria-expanded="false">
                                         <i class="me-3 fa fa-table" aria-hidden="false"></i>
                                         <span>Danh sách nguyên liệu</span>
@@ -219,10 +219,10 @@
                             </span>
                             <ul class="sidebar-submenu" id="subMenu2">
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/insert-counpon')}}"
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/list-material')}}"
                                         aria-expanded="false">
-                                        <i class="me-3 fa fa-chart-pie" aria-hidden="false"></i>
-                                        <span>Thống kê kho hàng</span>
+                                        <i class="me-3 fa fa-chart-bar" aria-hidden="false"></i>
+                                        <span>Danh sách kho thành phẩm</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
@@ -232,6 +232,13 @@
                                         <span>Danh sách kho hàng</span>
                                     </a>
                                 </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{URL::to('/insert-counpon')}}"
+                                        aria-expanded="false">
+                                        <i class="me-3 fa fa-chart-pie" aria-hidden="false"></i>
+                                        <span>Thống kê kho hàng</span>
+                                    </a>
+                                </li>                
                             </ul>
                         </li>
                         <li class="sidebar-item dropdown">

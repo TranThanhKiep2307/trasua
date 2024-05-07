@@ -82,6 +82,23 @@ Route::post('/update-counpon/{counpon_id}',[CounponController::class,'update_cou
 Route::get('/delete-counpon/{counpon_id}',[CounponController::class,'delete_counpon']);
 Route::get('/unset-counpon',[CounponController::class,'unset_counpon']);
 
+//supplier
+Route::get('/all-supplier',[SupllierController::class, 'all_supplier']);
+Route::get('/add-supplier',[SupllierController::class, 'add_supplier']);
+Route::post('/save-supplier',[SupllierController::class,'save_supplier']);
+Route::get('/edit-supplier/{supplier_id}',[SupllierController::class, 'edit_supplier']);
+Route::get('/delete-supplier/{supplier_id}',[SupllierController::class, 'delete_supplier']);
+Route::post('/update-supplier/{supplier_id}',[SupllierController::class,'update_supplier']);
 
+//material
+Route::get('/all-material',[MaterialController::class, 'all_material']);
+Route::get('/add-material',[MaterialController::class, 'add_material']);
+Route::post('/save-material',[MaterialController::class,'save_material']);
+Route::get('/edit-material/{material_id}',[MaterialController::class, 'edit_material']);
+Route::get('/delete-material/{material_id}',[MaterialController::class, 'delete_material']);
+Route::post('/update-material/{material_id}',[MaterialController::class,'update_material']);
+Route::get('/on-material/{material_id}',[MaterialController::class,'on_material']);
+Route::get('/off-material/{material_id}',[MaterialController::class,'off_material']);
 
-
+//stock
+Route::get('/list-material',[StockController::class, 'list_material']);

@@ -29,7 +29,7 @@
                         }
                         ?>
                         <center class="card-title mt-2">Thêm nhà cung cấp</center>
-                        <form class="form-horizontal form-material mx-2" action="{{URL::to('/add-supplier')}}" method="POST">
+                        <form class="form-horizontal form-material mx-2" action="{{URL::to('/save-supplier')}}" method="POST">
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label class="col-md-12 mb-0">Tên nhà cung cấp</label>

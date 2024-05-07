@@ -40,12 +40,12 @@ class CategoryProduct extends Controller
             $name_image = current(explode('.',$get_name_image));
             $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public/images/products',$new_image);
-            $data['product_image'] = $new_image;
+            $data['category_image'] = $new_image;
             DB::table('category_product_table')->insert($data);
             Session()->put('message','Thêm danh mục sản phẩm thành công');
             return redirect::to('all-category-product');
         }
-        $data['product_image'] = '';
+        $data['category_image'] = '';
         DB::table('category_product_table')->insert($data);
         Session()->put('message','Thêm danh mục sản phẩm thành công');
         return redirect::to('all-category-product');

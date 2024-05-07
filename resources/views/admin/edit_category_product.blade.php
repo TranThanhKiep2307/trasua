@@ -30,7 +30,7 @@
                         ?>
                         <center class="card-title mt-2">Thêm Danh Mục Sản Phẩm</center>
                         @foreach($edit_category_product as $key => $edit_value)
-                        <form class="form-horizontal form-material mx-2" action="{{URL::to('/update-category-product/'.$edit_value->category_id)}}" method="POST">
+                        <form class="form-horizontal form-material mx-2" action="{{URL::to('/update-category-product/'.$edit_value->category_id)}}" method="POST" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label class="col-md-12 mb-0">Tên danh mục</label>
