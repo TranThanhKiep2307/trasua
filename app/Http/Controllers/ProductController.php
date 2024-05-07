@@ -28,7 +28,8 @@ class ProductController extends Controller
     }
     public function all_product(){
         $this->AuthLogin();
-        $all_product = DB::table('product_table')->join('category_product_table', 'category_product_table.category_id', 'product_table.category_id')
+        $all_product = DB::table('product_table')
+        ->join('category_product_table', 'category_product_table.category_id', 'product_table.category_id')
         ->orderByDesc('product_table.product_id')->paginate(10);
         return view('admin.all_product', ['all_product' => $all_product]);
     }    
@@ -110,22 +111,47 @@ class ProductController extends Controller
     public function details_product($product_id){
         $cate_product = DB::table('category_product_table')->orderBy('category_id')->get();
         $details_product = DB::table('product_table')
-        ->join('category_product_table', 'category_product_table.category_id', 'product_table.category_id')
-        ->where('product_table.product_id', $product_id)
-        ->get();
-
+            ->select(
+                'product_table.product_id',
+                'product_table.product_name',
+                'product_table.product_price',
+                'product_table.product_image',
+                'product_table.product_decs',
+                'product_table.product_status',
+                'category_product_table.category_name', // Thêm trường category_name vào danh sách các trường được chọn
+                'category_product_table.category_id', // Thêm trường category_id vào danh sách các trường được chọn
+                'finished_product_table.endpro_number',
+                'customer_table.customer_name',
+                'comment_table.*'
+            )
+            ->join('category_product_table', 'category_product_table.category_id', 'product_table.category_id')
+            ->join('finished_product_table', 'product_table.product_id', 'finished_product_table.product_id')
+            ->leftJoin('comment_table', 'comment_table.product_id', 'product_table.product_id')
+            ->leftJoin('customer_table', 'comment_table.customer_id', 'customer_table.customer_id')
+            ->where('product_table.product_id', $product_id)
+            ->get();
+    
+        // Khởi tạo biến $category_id trước khi sử dụng
+        $category_id = null;
         foreach($details_product as $pr_dt){
             $category_id = $pr_dt->category_id;
         }
-            
-        $related_product = DB::table('product_table')
-                        ->join('category_product_table', 'category_product_table.category_id', 'product_table.category_id')
-                        ->where('category_product_table.category_id', $category_id)
-                        ->whereNotIn('product_table.product_id', [$product_id])
-                        ->get();
+    
+        // Kiểm tra nếu $category_id không null
+        if ($category_id !== null) {
+            $related_product = DB::table('product_table')
+                ->join('category_product_table', 'category_product_table.category_id', 'product_table.category_id')
+                ->where('category_product_table.category_id', $category_id)
+                ->whereNotIn('product_table.product_id', [$product_id])
+                ->get();
+        } else {
+            // Xử lý khi $category_id là null, có thể làm một hành động phù hợp ở đây
+            $related_product = [];
+        }
+    
         return view('pages.product.details_product')
-                ->with('category', $cate_product)
-                ->with('pro_details', $details_product)
-                ->with('pro_related', $related_product);
-    }
+            ->with('category', $cate_product)
+            ->with('pro_details', $details_product)
+            ->with('pro_related', $related_product);
+    }        
 }

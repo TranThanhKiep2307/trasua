@@ -99,6 +99,18 @@ Route::get('/delete-material/{material_id}',[MaterialController::class, 'delete_
 Route::post('/update-material/{material_id}',[MaterialController::class,'update_material']);
 Route::get('/on-material/{material_id}',[MaterialController::class,'on_material']);
 Route::get('/off-material/{material_id}',[MaterialController::class,'off_material']);
+Route::get('/turnover-material',[MaterialController::class, 'turnover_material']);
 
 //stock
 Route::get('/list-material',[StockController::class, 'list_material']);
+Route::post('/edit-list-material/{product_id}',[StockController::class, 'edit_list_material']);
+Route::get('/static-material',[StockController::class, 'static_material']);
+Route::get('/turnover',[StockController::class, 'turnover']);
+Route::get('/dashboard', [StockController::class, 'dashboard']);
+
+//comment
+Route::get('/add-cmt', [HomeController::class, 'add_cmt']);
+Route::get('/comment',[StockController::class, 'comment']);
+Route::post('/edit-cm/{cm_id}',[StockController::class, 'edit_cm']);
+
+

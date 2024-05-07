@@ -16,52 +16,42 @@
                     <div class="card-body">
                         <h4 class="card-title">Doanh số trong ngày</h4>
                         <div class="text-end">
-                            <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> $120</h2>
-                            <span class="text-muted">Todays Income</span>
+                            <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> {{ number_format($dailyIncome, 0, ',', '.') }} VNĐ</h2>
+                            <span class="text-muted">Doanh thu hôm nay</span>
                         </div>
-                        <span class="text-success">80%</span>
+                        <span class="text-success">{{ $dailyIncomePercentage }}</span>
                         <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%; height: 6px;"
-                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ $dailyIncomePercentage }}%; height: 6px;"
+                                aria-valuenow="{{ $dailyIncomePercentage }}" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
             </div>
-
+    
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Doanh số trong tuần</h4>
                         <div class="text-end">
-                            <h2 class="font-light mb-0"><i class="ti-arrow-up text-info"></i> $5,000</h2>
-                            <span class="text-muted">Todays Income</span>
+                            <h2 class="font-light mb-0"><i class="ti-arrow-up text-info"></i> {{ number_format($weeklyIncome, 0, ',', '.') }} VNĐ</h2>
+                            <span class="text-muted">Doanh thu tuần này</span>
                         </div>
-                        <span class="text-info">30%</span>
+                        <span class="text-info">{{ $weeklyIncomePercentage }}</span>
                         <div class="progress">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 30%; height: 6px;"
-                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-info" role="progressbar" style="width: {{ $weeklyIncomePercentage }}%; height: 6px;"
+                                aria-valuenow="{{ $weeklyIncomePercentage }}" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <!-- column -->
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Thống kê doanh thu</h4>
-                        <div class="flot-chart">
-                            <div class="flot-chart-content " id="flot-line-chart"
-                                style="padding: 0px; position: relative;">
-                                <canvas class="flot-base w-100" height="400"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- column -->
+    </div>
+    
         </div>
+    </div>
+    
+        </div>
+        
     </div>
     
 </div>

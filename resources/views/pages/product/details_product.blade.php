@@ -46,10 +46,15 @@
                     <ul>
                         <li>Mã sản phẩm: <span>{{$pro_dt->product_id}}</span></li>
                         <li>Danh mục: <span>{{$pro_dt->category_name}}</span></li>
+                        <li>Số lượng trong kho: <span>{{$pro_dt->endpro_number}}</span></li>
                         <li>Tình trạng: 
                             <span>
                                 @if($pro_dt->product_status == 0)
-                                    Còn bán
+                                    @if($pro_dt->endpro_number > 0)
+                                        Còn bán
+                                    @else
+                                        Ngưng bán
+                                    @endif
                                 @elseif($pro_dt->product_status == 1)
                                     Ngưng bán
                                 @endif
@@ -61,12 +66,15 @@
                         <div class="product__details__option">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input name="qty" type="number" value="1" max="20">
+                                    <input name="qty" type="number" value="1" max="{{$pro_dt->endpro_number}}">
                                     <input name="pro_id" type="hidden" value="{{$pro_dt->product_id}}">
                                 </div>
                             </div>
-                            <button type="submit" name="submit" class="primary-btn">Thêm vào giỏ hàng</button>
-                            {{-- <a href="" class="heart__btn"><span class="icon_heart_alt"></span></a> --}}
+                            @if($pro_dt->endpro_number > 0)
+                                <button type="submit" name="submit" class="primary-btn">Thêm vào giỏ hàng</button>
+                            @else
+                                <button type="button" class="primary-btn" disabled>Thêm vào giỏ hàng</button>
+                            @endif                        
                         </div> 
                     </form>
                     
@@ -94,11 +102,79 @@
                     <div class="tab-pane" id="tabs-2" role="tabpanel">
                         <div class="row d-flex justify-content-center">
                             <div class="col-lg-8">
-                                <p>This delectable Strawberry Pie is an extraordinary treat filled with sweet and
-                                    tasty chunks of delicious strawberries. Made with the freshest ingredients, one
-                                    bite will send you to summertime. Each gift arrives in an elegant gift box and
-                                    arrives with a greeting card of your choice that you can personalize online!3
-                                </p>
+                                <br>
+                                <br>
+                                <div class="blog__details__comment">
+                                    <div class="blog__details__comment">
+                                        @foreach ($pro_details as $all)
+                                        @if($all->customer_name)
+                                                <div class="blog__details__comment__item">
+                                                    <div class="blog__details__comment__item__pic">
+                                                        <img src="{{ asset('public/frontend/img/icon/user.png') }}" alt="">
+                                                    </div>
+                                                    <div class="rating">
+                                                        @for($i = 1; $i <= 5; $i++)
+                                                            @if($i <= $all->cm_star)
+                                                                <span class="icon_star"></span>
+                                                            @else
+                                                                <span class="icon_star-half_alt"></span>
+                                                            @endif
+                                                        @endfor
+                                                    </div>
+                                                    <div class="blog__details__comment__item__text">
+                                                        <h6>{{$all->customer_name}}</h6>
+                                                        <span>{{ \Carbon\Carbon::parse($all->created_at)->format('Y-m-d H:i:s') }}</span>
+                                                        <hp>{{$all->cm_cmt}}</hp>
+                                                    </div>
+                                                </div>
+                                                <!-- Nếu bạn muốn hiển thị phản hồi, bạn có thể làm như sau -->
+                                                @if($all->cm_answer)
+                                                    <div class="blog__details__comment__item blog__details__comment__item--reply">
+                                                        <div class="blog__details__comment__item__pic">
+                                                            <img src="{{ asset('public/frontend/img/logonew.png') }}" alt="">
+                                                        </div>
+                                                        <div class="blog__details__comment__item__text">
+                                                            <h6>Tý Tea</h6>
+                                                            <span>{{ \Carbon\Carbon::parse($all->updated_at)->format('Y-m-d H:i:s') }}</span>
+                                                            <hp>{{ $all->cm_answer }}</hp>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                        @else
+                                            <p>Không có comment nào được tìm thấy.</p>
+                                        @endif
+                                        @endforeach
+                                    </div>                                    
+                                </div>
+                                <h5>Đánh giá</h5>
+                                <div class="contact__form">
+                                    <form action="{{URL::to('/add-cmt')}}" method="POST">
+                                        {{ csrf_field() }}
+                                        @php
+                                            $customer_id = Session::get('customer_id');
+                                        @endphp
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <input type="number" name="cm_star" min="1" max="5" placeholder="Số sao">
+                                                <input type="hidden" name="product_id" value="{{$pro_dt->product_id}}">
+                                                <input type="hidden" name="cm_answer" value="NULL">
+                                                <input type="hidden" name="updated_at" value="NULL">
+                                                @if($customer_id)
+                                                    <input type="hidden" name="customer_id" value="{{ $customer_id }}">
+                                                @else
+                                                    <p>Vui lòng đăng nhập để đánh giá và bình luận.</p>
+                                                @endif
+                                                <input type="hidden" name="created_at" value="{{ now() }}" >
+                                                @if($customer_id)
+                                                    <button type="submit" name="add-customer" class="site-btn">Đánh giá</button>
+                                                @endif
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <textarea placeholder="Đánh giá" name="cm_cmt"></textarea>
+                                            </div>
+                                        </div>
+                                    </form>                                 
+                                </div>
                             </div>
                         </div>
                     </div>

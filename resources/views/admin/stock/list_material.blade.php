@@ -70,12 +70,14 @@
                                                     NULL
                                                 @endif
                                             </td>
-                                            <td >
-                                                10
-                                            </td>
-                                            
-                                            
-                                            
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <form action="{{URL::to('/edit-list-material/'.$product->product_id)}}" method="POST" class="d-flex">
+                                                        @csrf
+                                                        <input type="number" name="endpro_number" value="{{$product->endpro_number}}" class="form-control  me-2" style="width: 70px;">
+                                                        <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>                                                    </form>
+                                                </div>
+                                            </td>                                            
                                         </tr>
                                         @php
                                             $stt++;

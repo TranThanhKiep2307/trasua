@@ -160,7 +160,7 @@ class CheckoutController extends Controller
         $order_data['customer_id'] = session()->get('customer_id');
         $order_data['shipping_id'] = session()->get('shipping_id');
         $order_data['payment_id'] = $payment_id;
-        $order_data['order_total'] =  number_format(Cart::subtotal(), 0, ',', '.');
+        $order_data['order_total'] = Cart::subtotal();
         $order_data['order_stt'] = '0';
 
         $order_id = DB::table('order_table')->insertGetId($order_data);
@@ -175,6 +175,10 @@ class CheckoutController extends Controller
             $order_d_data['product_price'] = $v_content->price;
             $order_d_data['product_sales_qty'] = $v_content->qty;
             $order_d_data = DB::table('order_details_table')->insertGetId($order_d_data);
+
+            DB::table('finished_product_table')
+            ->where('product_id', $v_content->id)
+            ->decrement('endpro_number', $v_content->qty);
         }
         
         if( $data['payment_method'] == '1'){
@@ -260,7 +264,6 @@ class CheckoutController extends Controller
     }
     
     public function check_discount(Request $request){
-        $this->AuthLogin();
         $data = $request->all();
         $coupon = DB::table('counpon_table')->where('counpon_code', $data['counpon'])->first();
         if($coupon){
@@ -291,7 +294,6 @@ class CheckoutController extends Controller
         }
     }
     public function change_order($order_id){
-        $this->AuthLogin();
         $order = DB::table('order_table')->where('order_id', $order_id)->get();
         // Chuyển hướng về trang hiển thị thông tin khách hàng hoặc trang cập nhật thông tin
         return view('admin.change_order')->with('order', $order);

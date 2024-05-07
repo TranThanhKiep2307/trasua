@@ -109,4 +109,13 @@ class MaterialController extends Controller
         Session()->put('message','Dừng bán nguyên liệu');
         return redirect::to('all-material');
     }
+    public function turnover_material(){
+        $productQuantities = DB::table('material_table')
+        ->select('material_name','material_unit', DB::raw('SUM(material_number) as total_quantity'))
+        ->groupBy('material_name','material_unit')
+        ->get();
+
+    // Trả về view và truyền dữ liệu sản phẩm cho view
+    return view('admin.system.turnover_material', ['productQuantities' => $productQuantities]);
+    }
 }
