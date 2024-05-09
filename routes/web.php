@@ -109,7 +109,7 @@ Route::get('/turnover',[StockController::class, 'turnover']);
 Route::get('/dashboard', [StockController::class, 'dashboard']);
 
 //comment
-Route::get('/add-cmt', [HomeController::class, 'add_cmt']);
+Route::post('/add-cmt', [HomeController::class, 'add_cmt']);
 Route::get('/comment',[StockController::class, 'comment']);
 Route::post('/edit-cm/{cm_id}',[StockController::class, 'edit_cm']);
 

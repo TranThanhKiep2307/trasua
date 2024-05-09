@@ -126,7 +126,14 @@ class ProductController extends Controller
             )
             ->join('category_product_table', 'category_product_table.category_id', 'product_table.category_id')
             ->join('finished_product_table', 'product_table.product_id', 'finished_product_table.product_id')
-            ->leftJoin('comment_table', 'comment_table.product_id', 'product_table.product_id')
+            ->leftJoinSub(
+                DB::table('product_table')->select('product_id'),
+                'all_products',
+                function ($join) {
+                    $join->on('product_table.product_id', '=', 'all_products.product_id');
+                }
+            )
+            ->leftJoin('comment_table', 'comment_table.product_id', 'all_products.product_id')
             ->leftJoin('customer_table', 'comment_table.customer_id', 'customer_table.customer_id')
             ->where('product_table.product_id', $product_id)
             ->get();
